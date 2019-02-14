@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CUATRO EN LINEA</title>
+  <meta charste="utf-8">
+<header>
+<h1>Cuatro EN LINEA</h1>
+</header> 
+</head>
+<style>
+    h1{
+      text-align: center;
+      color: silver;
+      font-size: 50;  
+      margin-top: 10px; 
+    }
+    .table{
+      border: 3px solid silver;
+      margin-left: 35%;
+      margin-top: 20px;
+      background-color: #3F9CFE;
+      width: 530px;
+      height: 530px;  
+    }
+    .players{
+      border: 3px solid silver;
+      margin-left: 40%;
+      margin-top: 20px;
+      background-color: white;
+    }
+  </style>
+<body>
+
+<table class="table">
+
+
+ <tr>
+    <td><img src="blanco.png" width="100" Height="100" id="c0" onclick="box(0)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c1" onclick="box(1)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c2" onclick="box(2)" /></td>
+    <td><img src="blanco.png" width="100" Height="100" id="c3" onclick="box(3)" /></td>
+    <td><img src="blanco.png" width="100" Height="100" id="c4" onclick="box(4)" /></td> 
+ </tr>
+
+ <tr>
+    <td><img src="blanco.png" width="100" Height="100" id="c5" onclick="box(5)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c6" onclick="box(6)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c7" onclick="box(7)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c8" onclick="box(8)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c9" onclick="box(9)" /></td> 
+ </tr>
+
+ <tr>
+    <td><img src="blanco.png" width="100" Height="100" id="c10" onclick="box(10)" /></td>
+    <td><img src="blanco.png" width="100" Height="100" id="c11" onclick="box(11)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c12" onclick="box(12)" /></td>
+    <td><img src="blanco.png" width="100" Height="100" id="c13" onclick="box(13)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c14" onclick="box(14)" /></td> 
+ </tr>
+
+ <tr>
+    <td><img src="blanco.png" width="100" Height="100" id="c15" onclick="box(15)" /></td>
+    <td><img src="blanco.png" width="100" Height="100" id="c16" onclick="box(16)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c17" onclick="box(17)" /></td>
+    <td><img src="blanco.png" width="100" Height="100" id="c18" onclick="box(18)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c19" onclick="box(19)" /></td> 
+ </tr>
+
+ <tr>
+    <td><img src="blanco.png" width="100" Height="100" id="c20" onclick="box(20)" /></td>
+    <td><img src="blanco.png" width="100" Height="100" id="c21" onclick="box(21)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c22" onclick="box(22)" /></td>
+    <td><img src="blanco.png" width="100" Height="100" id="c23" onclick="box(23)" /></td>  
+    <td><img src="blanco.png" width="100" Height="100" id="c24" onclick="box(24)" /></td> 
+ </tr>
+
+</table>
+
+<table class="players">
+<tr>
+    <th>Jugador 1</th>  
+    <td></td>  
+    <th>Jugador 2</th>  
+ </tr>
+
+ <tr>
+    <td><img src="rojo.png" width="100" Height="100"/></td>  
+    <td><input type="button" value="Reiniciar Partida" id="reset" onclick="reiniciar()" onmouseout="suelta()" /></td>  
+    <td><img src="amarillo.png" width="100" Height="100"/></td>  
+ </tr>
+<br />
+</table>
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+ var img='rojo.png' ;
+ var turno=1;
+ var arreglo = new Array();
+ var jug1=0;
+ var jug2=0;
+
+ for(i=0; i<=24; i++){
+
+  arreglo[i]=-1;
+
+ }
+
+ function box(pos){
+
+    if(arreglo[pos]==-1){
+     
+     if(turno==1){
+      if(img=='rojo.png'){
+        document.getElementById('c'+pos).src=img;
+	arreglo[pos]=1;
+        turno=2;
+	img='amarillo.png';
+      }
+      
+     }else if(turno==2){ 
+      if(img=='amarillo.png'){
+       document.getElementById('c'+pos).src=img;
+       arreglo[pos]=0;
+       turno=1;
+       img='rojo.png' ;
+      }
+
+     }
+
+    }else{ alert('Posición ocupada!'); }
+    
+
+  if(arreglo[0]==1 && arreglo[1]==1 && arreglo[2]==1 && arreglo[3]==1){
+	alert('Ganó Jugador 1');
+        jug1=jug1+1;
+	reiniciar();
+  }
+  if(arreglo[4]==1 && arreglo[3]==1 && arreglo[2]==1 && arreglo[1]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[0]==0 && arreglo[1]==0 && arreglo[2]==0 && arreglo[3]==0){
+	alert('Ganó Jugador 2');
+        jug2=jug2+1;
+	reiniciar();
+  }
+  if(arreglo[4]==0 && arreglo[3]==0 && arreglo[2]==0 && arreglo[1]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[5]==1 && arreglo[6]==1 && arreglo[7]==1 && arreglo[8]==1){
+	alert('Ganó Jugador 1');
+        jug1=jug1+1;
+	reiniciar();
+  }
+  if(arreglo[9]==1 && arreglo[8]==1 && arreglo[7]==1 && arreglo[6]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[5]==0 && arreglo[6]==0 && arreglo[7]==0 && arreglo[8]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+  if(arreglo[9]==0 && arreglo[8]==0 && arreglo[7]==0 && arreglo[6]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[10]==1 && arreglo[11]==1 && arreglo[12]==1 && arreglo[13]==1){
+	alert('Ganó Jugador 1');
+        jug1=jug1+1;
+	reiniciar();
+  }
+  if(arreglo[14]==1 && arreglo[13]==1 && arreglo[12]==1 && arreglo[11]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[10]==0 && arreglo[11]==0 && arreglo[12]==0 && arreglo[13]==0){
+	alert('Ganó Jugador 2');
+        jug2=jug2+1;
+	reiniciar();
+  }
+  if(arreglo[14]==0 && arreglo[13]==0 && arreglo[12]==0 && arreglo[11]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[15]==1 && arreglo[16]==1 && arreglo[17]==1 && arreglo[18]==1){
+	alert('Ganó Jugador 1');
+        jug1=jug1+1;
+	reiniciar();
+  }
+  if(arreglo[19]==1 && arreglo[18]==1 && arreglo[17]==1 && arreglo[16]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[15]==0 && arreglo[16]==0 && arreglo[17]==0 && arreglo[18]==0){
+	alert('Ganó Jugador 2');
+        jug2=jug2+1;
+	reiniciar();
+  }
+  if(arreglo[19]==0 && arreglo[18]==0 && arreglo[17]==0 && arreglo[16]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+
+ if(arreglo[20]==1 && arreglo[21]==1 && arreglo[22]==1 && arreglo[23]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+  if(arreglo[24]==1 && arreglo[23]==1 && arreglo[22]==1 && arreglo[21]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[20]==0 && arreglo[21]==0 && arreglo[22]==0 && arreglo[23]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+  if(arreglo[24]==0 && arreglo[23]==0 && arreglo[22]==0 && arreglo[21]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+
+ if(arreglo[0]==1 && arreglo[5]==1 && arreglo[10]==1 && arreglo[15]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+  if(arreglo[20]==1 && arreglo[15]==1 && arreglo[10]==1 && arreglo[5]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[0]==0 && arreglo[5]==0 && arreglo[10]==0 && arreglo[15]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+  if(arreglo[20]==0 && arreglo[15]==0 && arreglo[10]==0 && arreglo[5]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[1]==1 && arreglo[6]==1 && arreglo[11]==1 && arreglo[16]==1){
+	alert('Ganó Jugador 1');
+        jug1=jug1+1;
+	reiniciar();
+  }
+  if(arreglo[21]==1 && arreglo[16]==1 && arreglo[11]==1 && arreglo[6]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[1]==0 && arreglo[6]==0 && arreglo[11]==0 && arreglo[16]==0){
+	alert('Ganó Jugador 2');
+        jug2=jug2+1;
+	reiniciar();
+  }
+  if(arreglo[21]==0 && arreglo[16]==0 && arreglo[11]==0 && arreglo[6]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+ 
+  if(arreglo[2]==1 && arreglo[7]==1 && arreglo[12]==1 && arreglo[17]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+  if(arreglo[22]==1 && arreglo[17]==1 && arreglo[12]==1 && arreglo[7]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[2]==0 && arreglo[7]==0 && arreglo[12]==0 && arreglo[17]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+  if(arreglo[22]==0 && arreglo[17]==0 && arreglo[12]==0 && arreglo[7]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[3]==1 && arreglo[8]==1 && arreglo[13]==1 && arreglo[18]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+  if(arreglo[23]==1 && arreglo[18]==1 && arreglo[13]==1 && arreglo[8]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[3]==0 && arreglo[8]==0 && arreglo[13]==0 && arreglo[18]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+  if(arreglo[23]==0 && arreglo[18]==0 && arreglo[13]==0 && arreglo[8]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+  if(arreglo[4]==1 && arreglo[9]==1 && arreglo[14]==1 && arreglo[19]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+  if(arreglo[24]==1 && arreglo[19]==1 && arreglo[14]==1 && arreglo[9]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[4]==0 && arreglo[9]==0 && arreglo[14]==0 && arreglo[19]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+  if(arreglo[24]==0 && arreglo[19]==0 && arreglo[14]==0 && arreglo[9]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[0]==1 && arreglo[6]==1 && arreglo[12]==1 && arreglo[18]==1){
+	alert('Ganó Jugador 1');
+        jug1=jug1+1;
+	reiniciar();
+  }
+  if(arreglo[24]==1 && arreglo[18]==1 && arreglo[12]==1 && arreglo[6]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[0]==0 && arreglo[6]==0 && arreglo[12]==0 && arreglo[18]==0){
+	alert('Ganó Jugador 2');
+        jug2=jug2+1;
+	reiniciar();
+  }
+  if(arreglo[24]==0 && arreglo[18]==0 && arreglo[12]==0 && arreglo[6]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+
+  
+   if(arreglo[4]==1 && arreglo[8]==1 && arreglo[12]==1 && arreglo[16]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+  if(arreglo[20]==1 && arreglo[16]==1 && arreglo[12]==1 && arreglo[8]==1){
+  alert('Ganó Jugador 1');
+        jug1=jug1+1;
+  reiniciar();
+  }
+
+
+  if(arreglo[4]==0 && arreglo[8]==0 && arreglo[12]==0 && arreglo[16]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+  if(arreglo[20]==0 && arreglo[16]==0 && arreglo[12]==0 && arreglo[8]==0){
+  alert('Ganó Jugador 2');
+        jug2=jug2+1;
+  reiniciar();
+  }
+ }
+  
+
+ function reiniciar(){
+
+  document.getElementById('reset');
+
+  for(i=0; i<=24; i++){
+     document.getElementById('c'+i).src="blanco.png";
+  }
+
+  
+  for(i=0; i<=24; i++){
+     arreglo[i]=-1;
+  }
+
+ }
+
+</script>
